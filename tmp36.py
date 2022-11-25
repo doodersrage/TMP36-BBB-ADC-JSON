@@ -25,10 +25,10 @@ while True:
     
     m = {"mv": millivolts, "C": temp_c, "F": temp_f}
     
-    dataj = json.dumps(m).encode('utf-8')
+    dataj = b"HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n"+json.dumps(m).encode('utf-8')
 
     #print dataj
-    conn.send("HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n"+dataj)
+    conn.send(dataj)
     conn.recv(4096)
     conn.close()
     
